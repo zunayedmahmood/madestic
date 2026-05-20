@@ -5,15 +5,16 @@ import { Command } from "lucide-react";
 import { useEffect } from "react";
 
 export function HeroMachine() {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(700); // Centered default (1400 / 2)
+  const mouseY = useMotionValue(450); // Centered default (900 / 2)
   const smoothX = useSpring(mouseX, { stiffness: 60, damping: 22 });
   const smoothY = useSpring(mouseY, { stiffness: 60, damping: 22 });
   const orbitX = useTransform(smoothX, [0, 1400], [-18, 18]);
   const orbitY = useTransform(smoothY, [0, 900], [-18, 18]);
 
   useEffect(() => {
-    const move = (event) => {
+    if (!window.matchMedia("(hover: hover)").matches) return;
+    const move = (event: PointerEvent) => {
       mouseX.set(event.clientX);
       mouseY.set(event.clientY);
     };
@@ -23,15 +24,30 @@ export function HeroMachine() {
 
   return (
     <motion.div style={{ x: orbitX, y: orbitY }} className="relative mx-auto aspect-square w-full max-w-[570px]">
-      <motion.div className="absolute inset-4 rounded-full border border-red-500/20 shadow-[inset_0_0_90px_rgba(185,28,28,0.15)]" animate={{ rotate: 360 }} transition={{ duration: 44, repeat: Infinity, ease: "linear" }}>
+      <motion.div
+        className="absolute inset-4 rounded-full border border-red-500/20 shadow-[inset_0_0_90px_rgba(185,28,28,0.15)] transform-gpu"
+        style={{ willChange: "transform" }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 44, repeat: Infinity, ease: "linear" }}
+      >
         <div className="absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500 shadow-[0_0_40px_rgba(239,68,68,1)]" />
       </motion.div>
 
-      <motion.div className="absolute inset-20 rounded-full border border-white/10" animate={{ rotate: -360 }} transition={{ duration: 28, repeat: Infinity, ease: "linear" }}>
+      <motion.div
+        className="absolute inset-20 rounded-full border border-white/10 transform-gpu"
+        style={{ willChange: "transform" }}
+        animate={{ rotate: -360 }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+      >
         <div className="absolute bottom-8 left-6 h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_32px_rgba(255,255,255,0.8)]" />
       </motion.div>
 
-      <motion.div className="absolute inset-32 rounded-full border border-red-300/20" animate={{ rotate: 360 }} transition={{ duration: 18, repeat: Infinity, ease: "linear" }}>
+      <motion.div
+        className="absolute inset-32 rounded-full border border-red-300/20 transform-gpu"
+        style={{ willChange: "transform" }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+      >
         <div className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-red-300 shadow-[0_0_32px_rgba(252,165,165,1)]" />
       </motion.div>
 

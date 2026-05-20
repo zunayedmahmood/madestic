@@ -12,9 +12,13 @@ function useMouseGlow() {
   const mouseY = useMotionValue(0);
   const smoothX = useSpring(mouseX, { stiffness: 70, damping: 22, mass: 0.25 });
   const smoothY = useSpring(mouseY, { stiffness: 70, damping: 22, mass: 0.25 });
+  const [isHoverable, setIsHoverable] = useState(false);
 
   useEffect(() => {
-    const move = (event) => {
+    if (!window.matchMedia("(hover: hover)").matches) return;
+    setIsHoverable(true);
+
+    const move = (event: PointerEvent) => {
       mouseX.set(event.clientX);
       mouseY.set(event.clientY);
     };
@@ -22,13 +26,26 @@ function useMouseGlow() {
     return () => window.removeEventListener("pointermove", move);
   }, [mouseX, mouseY]);
 
-  return { smoothX, smoothY };
+  return { smoothX, smoothY, isHoverable };
 }
 
 function ParticleField() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || !window.matchMedia("(hover: hover)").matches);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const particleCount = isMobile ? 16 : 54;
+
   const particles = useMemo(
     () =>
-      Array.from({ length: 54 }, (_, index) => ({
+      Array.from({ length: particleCount }, (_, index) => ({
         id: index,
         x: (index * 37) % 100,
         y: (index * 61) % 100,
@@ -36,28 +53,33 @@ function ParticleField() {
         delay: (index % 8) * 0.45,
         duration: 8 + (index % 9)
       })),
-    []
+    [particleCount]
   );
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       {particles.map((particle) => (
-        <motion.span
+        <span
           key={particle.id}
-          className="absolute rounded-full bg-red-400/35 blur-[1px]"
-          style={{ left: `${particle.x}%`, top: `${particle.y}%`, width: particle.size, height: particle.size }}
-          animate={{ y: [-20, 28, -20], opacity: [0.05, 0.6, 0.05], scale: [1, 1.8, 1] }}
-          transition={{ duration: particle.duration, delay: particle.delay, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute rounded-full bg-red-400/35 blur-[1px] animate-float-particle"
+          style={{
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+            width: particle.size,
+            height: particle.size,
+            "--float-duration": `${particle.duration}s`,
+            "--float-delay": `${particle.delay}s`
+          } as React.CSSProperties}
         />
       ))}
     </div>
   );
 }
 
-export function SiteShell({ children }) {
+export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { scrollYProgress } = useScroll();
-  const { smoothX, smoothY } = useMouseGlow();
+  const { smoothX, smoothY, isHoverable } = useMouseGlow();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 24, restDelta: 0.001 });
   const redShift = useTransform(scrollYProgress, [0, 1], [0, 220]);
   const [open, setOpen] = useState(false);
@@ -69,10 +91,12 @@ export function SiteShell({ children }) {
         className="fixed left-0 right-0 top-0 z-[90] h-1 origin-left bg-gradient-to-r from-red-950 via-red-500 to-white"
       />
 
-      <motion.div
-        style={{ x: smoothX, y: smoothY }}
-        className="pointer-events-none fixed left-0 top-0 z-[2] h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/18 blur-[90px]"
-      />
+      {isHoverable && (
+        <motion.div
+          style={{ x: smoothX, y: smoothY }}
+          className="pointer-events-none fixed left-0 top-0 z-[2] h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/18 blur-[90px]"
+        />
+      )}
       <motion.div
         style={{ y: redShift }}
         className="fixed inset-0 z-0 bg-[radial-gradient(circle_at_15%_5%,rgba(185,28,28,0.32),transparent_32%),radial-gradient(circle_at_85%_12%,rgba(255,255,255,0.08),transparent_24%),radial-gradient(circle_at_50%_90%,rgba(127,29,29,0.32),transparent_34%)]"

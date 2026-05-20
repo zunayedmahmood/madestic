@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useTransform } from "framer-motion";
 import { ArrowRight, ExternalLink, Flame, Play, Sparkles } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export function SectionLabel({ children }) {
   return (
@@ -20,11 +20,17 @@ export function SectionLabel({ children }) {
   );
 }
 
-export function Reveal({ children, delay = 0, className = "" }) {
+export function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const [shouldBlur, setShouldBlur] = useState(false);
+
+  useEffect(() => {
+    setShouldBlur(window.matchMedia("(hover: hover)").matches);
+  }, []);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 38, filter: "blur(12px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 38, filter: shouldBlur ? "blur(12px)" : "none" }}
+      whileInView={{ opacity: 1, y: 0, filter: shouldBlur ? "blur(0px)" : "none" }}
       viewport={{ once: true, margin: "-90px" }}
       transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
@@ -34,17 +40,26 @@ export function Reveal({ children, delay = 0, className = "" }) {
   );
 }
 
-export function MagneticLink({ children, href = "/start", className = "" }) {
-  const ref = useRef(null);
+export function MagneticLink({ children, href = "/start", className = "" }: { children: React.ReactNode; href?: string; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isHoverable, setIsHoverable] = useState(false);
 
-  const move = (event) => {
+  useEffect(() => {
+    setIsHoverable(window.matchMedia("(hover: hover)").matches);
+  }, []);
+
+  const move = (event: React.MouseEvent) => {
+    if (!isHoverable) return;
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
     setPosition({ x: event.clientX - rect.left - rect.width / 2, y: event.clientY - rect.top - rect.height / 2 });
   };
 
-  const leave = () => setPosition({ x: 0, y: 0 });
+  const leave = () => {
+    if (!isHoverable) return;
+    setPosition({ x: 0, y: 0 });
+  };
 
   return (
     <motion.div
@@ -69,11 +84,17 @@ export function MagneticLink({ children, href = "/start", className = "" }) {
   );
 }
 
-export function TiltCard({ children, className = "", glare = true }) {
-  const ref = useRef(null);
+export function TiltCard({ children, className = "", glare = true }: { children: React.ReactNode; className?: string; glare?: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0, x: 50, y: 50 });
+  const [isHoverable, setIsHoverable] = useState(false);
 
-  const handleMove = (event) => {
+  useEffect(() => {
+    setIsHoverable(window.matchMedia("(hover: hover)").matches);
+  }, []);
+
+  const handleMove = (event: React.MouseEvent) => {
+    if (!isHoverable) return;
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
     const x = ((event.clientX - rect.left) / rect.width) * 100;
@@ -81,7 +102,10 @@ export function TiltCard({ children, className = "", glare = true }) {
     setTilt({ rotateX: -(y - 50) * 0.12, rotateY: (x - 50) * 0.12, x, y });
   };
 
-  const handleLeave = () => setTilt({ rotateX: 0, rotateY: 0, x: 50, y: 50 });
+  const handleLeave = () => {
+    if (!isHoverable) return;
+    setTilt({ rotateX: 0, rotateY: 0, x: 50, y: 50 });
+  };
 
   return (
     <motion.div
@@ -93,7 +117,7 @@ export function TiltCard({ children, className = "", glare = true }) {
       style={{ transformStyle: "preserve-3d" }}
       className={`relative ${className}`}
     >
-      {glare && (
+      {glare && isHoverable && (
         <div
           className="pointer-events-none absolute inset-0 z-20 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           style={{ background: `radial-gradient(circle at ${tilt.x}% ${tilt.y}%, rgba(255,255,255,0.18), rgba(239,68,68,0.12) 18%, transparent 44%)` }}
