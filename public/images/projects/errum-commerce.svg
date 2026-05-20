@@ -1,0 +1,34 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1600" height="1000" fill="#030303"/>
+<circle cx="320" cy="190" r="360" fill="#7f1d1d" fill-opacity="0.44"/>
+<circle cx="1290" cy="780" r="420" fill="#ef4444" fill-opacity="0.18"/>
+<g opacity="0.13">
+<path d="M0 120H1600M0 240H1600M0 360H1600M0 480H1600M0 600H1600M0 720H1600M0 840H1600" stroke="white"/>
+<path d="M120 0V1000M240 0V1000M360 0V1000M480 0V1000M600 0V1000M720 0V1000M840 0V1000M960 0V1000M1080 0V1000M1200 0V1000M1320 0V1000M1440 0V1000" stroke="white"/>
+</g>
+<rect x="120" y="120" width="1360" height="760" rx="56" fill="white" fill-opacity="0.055" stroke="white" stroke-opacity="0.12"/>
+<rect x="170" y="170" width="1260" height="86" rx="28" fill="#0b0b0b" stroke="white" stroke-opacity="0.1"/>
+<circle cx="220" cy="213" r="12" fill="#ef4444"/>
+<circle cx="258" cy="213" r="12" fill="white" fill-opacity="0.35"/>
+<circle cx="296" cy="213" r="12" fill="white" fill-opacity="0.16"/>
+<rect x="1090" y="195" width="280" height="36" rx="18" fill="#ef4444" fill-opacity="0.24"/>
+<rect x="170" y="306" width="310" height="484" rx="34" fill="#111111" stroke="white" stroke-opacity="0.1"/>
+<rect x="216" y="360" width="210" height="24" rx="12" fill="white" fill-opacity="0.82"/>
+<rect x="216" y="410" width="170" height="16" rx="8" fill="white" fill-opacity="0.16"/>
+<rect x="216" y="452" width="210" height="88" rx="22" fill="#ef4444" fill-opacity="0.2"/>
+<rect x="216" y="570" width="210" height="88" rx="22" fill="white" fill-opacity="0.08"/>
+<rect x="216" y="688" width="210" height="48" rx="24" fill="#ef4444" fill-opacity="0.5"/>
+<rect x="530" y="306" width="400" height="210" rx="34" fill="#111111" stroke="white" stroke-opacity="0.1"/>
+<rect x="574" y="356" width="160" height="20" rx="10" fill="white" fill-opacity="0.75"/>
+<path d="M580 466C640 390 690 468 746 420C800 374 850 440 886 386" stroke="#ef4444" stroke-width="10" stroke-linecap="round"/>
+<rect x="970" y="306" width="410" height="210" rx="34" fill="#111111" stroke="white" stroke-opacity="0.1"/>
+<rect x="1014" y="356" width="210" height="20" rx="10" fill="white" fill-opacity="0.75"/>
+<rect x="1014" y="410" width="310" height="22" rx="11" fill="white" fill-opacity="0.12"/>
+<rect x="1014" y="458" width="250" height="22" rx="11" fill="white" fill-opacity="0.12"/>
+<rect x="530" y="560" width="850" height="230" rx="34" fill="#111111" stroke="white" stroke-opacity="0.1"/>
+<rect x="585" y="622" width="190" height="96" rx="24" fill="#ef4444" fill-opacity="0.25"/>
+<rect x="820" y="622" width="190" height="96" rx="24" fill="white" fill-opacity="0.08"/>
+<rect x="1055" y="622" width="190" height="96" rx="24" fill="#7f1d1d" fill-opacity="0.45"/>
+<text x="170" y="915" fill="white" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="900" letter-spacing="-3">Errum Commerce</text>
+<text x="172" y="958" fill="#fecaca" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">Campaigns • Checkout • Orders</text>
+</svg>
