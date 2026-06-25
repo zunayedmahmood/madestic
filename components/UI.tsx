@@ -177,8 +177,8 @@ export function CanvaDeckCard({ deck, index = 0 }) {
         </div>
 
         {deck.embedUrl ? (
-          <div className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/50">
-            <iframe loading="lazy" className="h-[390px] w-full" src={deck.embedUrl} allowFullScreen allow="fullscreen" title={deck.title} />
+          <div className="aspect-video overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/50">
+            <iframe loading="lazy" className="h-full w-full" src={deck.embedUrl} allowFullScreen allow="fullscreen" title={deck.title} />
           </div>
         ) : (
           <div className="relative flex h-[390px] items-center justify-center overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/55">

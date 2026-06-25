@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Command } from "lucide-react";
 import { useEffect } from "react";
@@ -57,15 +58,35 @@ export function HeroMachine() {
         transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
         className="absolute inset-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-[2.5rem] border border-white/10 bg-white/[0.06] p-4 shadow-[0_45px_150px_rgba(220,38,38,0.35)] backdrop-blur-2xl sm:h-64 sm:w-64"
       >
-        <div className="flex h-full flex-col justify-between rounded-[2rem] border border-red-500/20 bg-black/75 p-5">
-          <div className="flex items-center justify-between">
+        <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[2rem] border border-red-500/20 bg-black/75 p-5">
+          <div className="pointer-events-none absolute -bottom-10 -right-8 top-16 w-[74%] opacity-20">
+            <Image
+              src="/images/brand/madestic-half-logo-hero.png"
+              alt=""
+              fill
+              sizes="180px"
+              className="object-contain object-right-bottom"
+            />
+          </div>
+
+          <div className="relative z-10 flex items-center justify-between">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-red-600 text-white shadow-[0_0_34px_rgba(220,38,38,0.65)]">
               <Command className="h-5 w-5" />
             </div>
             <div className="rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-red-100">Live</div>
           </div>
-          <div>
-            <div className="text-6xl font-black tracking-tighter text-white">M</div>
+
+          <div className="relative z-10">
+            <div className="relative h-24 w-16 sm:h-28 sm:w-20">
+              <Image
+                src="/images/brand/madestic-half-logo-hero.png"
+                alt="Madestic half logo"
+                fill
+                priority
+                sizes="80px"
+                className="object-contain object-left drop-shadow-[0_0_28px_rgba(239,68,68,0.45)]"
+              />
+            </div>
             <p className="mt-3 text-xs leading-5 text-zinc-300">A digital execution engine for ambitious brands, operators, and founders.</p>
           </div>
         </div>

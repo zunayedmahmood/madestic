@@ -142,32 +142,46 @@ export const projects = [
 
 export const decks = [
   {
-    title: "Launch Campaign Strategy",
+    title: "The Positive One Strategy Deck 01",
+    accent: "Strategy",
+    description: "Embedded Canva strategy presentation for The Positive One, available directly inside the Strategy Lab.",
+    embedUrl: "https://www.canva.com/design/DAGd98pvw3M/XzzhNCsRSQ1Ti0JCM8VibA/view?embed",
+    link: "https://www.canva.com/design/DAGd98pvw3M/XzzhNCsRSQ1Ti0JCM8VibA/view?utm_content=DAGd98pvw3M&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
+  },
+  {
+    title: "The Positive One Strategy Deck 02",
     accent: "Campaign",
-    description: "Campaign positioning, audience narrative, visual hierarchy, offer framing, and growth execution flow.",
-    embedUrl: "",
-    link: "#"
+    description: "Embedded Canva campaign and communication deck for reviewing strategy work without leaving the site.",
+    embedUrl: "https://www.canva.com/design/DAGpDDMerZY/feCDcG7dqRGtUoim-uBRHQ/view?embed",
+    link: "https://www.canva.com/design/DAGpDDMerZY/feCDcG7dqRGtUoim-uBRHQ/view?utm_content=DAGpDDMerZY&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
   },
   {
-    title: "Brand Growth Playbook",
+    title: "The Positive One Strategy Deck 03",
+    accent: "Branding",
+    description: "Embedded Canva branding deck for showcasing visual direction, planning, and execution thinking.",
+    embedUrl: "https://www.canva.com/design/DAGtlwp2cL0/Ig1hAxSrWQsfGsCb3jHzvQ/view?embed",
+    link: "https://www.canva.com/design/DAGtlwp2cL0/Ig1hAxSrWQsfGsCb3jHzvQ/view?utm_content=DAGtlwp2cL0&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
+  },
+  {
+    title: "The Positive One Strategy Deck 04",
     accent: "Growth",
-    description: "Content pillars, performance messaging, creative systems, channel planning, and conversion strategy.",
-    embedUrl: "",
-    link: "#"
+    description: "Embedded Canva growth strategy deck for presenting audience, engagement, and campaign planning work.",
+    embedUrl: "https://www.canva.com/design/DAGuR0rohI0/BQ6AAgB_5CCI--Yf7foacQ/view?embed",
+    link: "https://www.canva.com/design/DAGuR0rohI0/BQ6AAgB_5CCI--Yf7foacQ/view?utm_content=DAGuR0rohI0&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
   },
   {
-    title: "Digital Transformation Proposal",
-    accent: "Proposal",
-    description: "A business-facing deck explaining operational improvement, product architecture, automation, and measurable outcomes.",
-    embedUrl: "",
-    link: "#"
+    title: "The Positive One Strategy Deck 05",
+    accent: "Playbook",
+    description: "Embedded Canva playbook deck for keeping strategic assets visible in the Madestic Strategy Lab.",
+    embedUrl: "https://www.canva.com/design/DAGnOrLd2V4/ALpdPSE3iLU2GyIqF6D53w/view?embed",
+    link: "https://www.canva.com/design/DAGnOrLd2V4/ALpdPSE3iLU2GyIqF6D53w/view?utm_content=DAGnOrLd2V4&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
   },
   {
-    title: "Product Launch Room",
-    accent: "Product",
-    description: "Product story, rollout stages, interface direction, launch assets, communication plan, and success metrics.",
-    embedUrl: "",
-    link: "#"
+    title: "The Positive One Strategy Deck 06",
+    accent: "Archive",
+    description: "Embedded Canva archive deck for older strategic work that still belongs inside the lab portfolio.",
+    embedUrl: "https://www.canva.com/design/DAHA8jRyTow/cY3wWw4qSQESVGQwUdaxWA/view?embed",
+    link: "https://www.canva.com/design/DAHA8jRyTow/cY3wWw4qSQESVGQwUdaxWA/view?utm_content=DAHA8jRyTow&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
   }
 ];
 

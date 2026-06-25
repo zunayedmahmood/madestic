@@ -148,7 +148,7 @@ export default function HomePage() {
             <p className="mt-7 max-w-3xl text-lg leading-9 text-zinc-300">Use this section for Canva presentations, campaign plans, transformation proposals, launch decks, and internal strategy stories.</p>
           </Reveal>
           <div className="mt-14 grid gap-7 lg:grid-cols-2">
-            {decks.slice(0, 2).map((deck, index) => <CanvaDeckCard key={deck.title} deck={deck} index={index} />)}
+            {decks.map((deck, index) => <CanvaDeckCard key={deck.title} deck={deck} index={index} />)}
           </div>
         </div>
       </section>
